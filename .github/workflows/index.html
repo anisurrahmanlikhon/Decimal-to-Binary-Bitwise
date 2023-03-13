@@ -1,0 +1,156 @@
+
+<html>
+<head>
+<title>Binary Converter Bitwise</title>
+<link rel="stylesheet" type="text/css" href="style.css" />
+
+<style>
+
+.binary THEAD TD{
+background-color: orange;
+color: #8C0099;
+cursor: pointer;
+cursor: hand;
+border-radius: 10px;
+text-align: center;
+padding: 10px;
+}
+
+
+.binary TBODY TD{
+background-color: green;
+color: #FFFFFF;
+cursor: pointer;
+cursor: hand;
+border-radius: 10px;
+text-align: center;
+padding: 16px;
+font-size: 36pt;
+}
+
+
+.binary TBODY TD:hover{
+background-color: orange;
+color: #8C0099;
+}
+
+#number{
+width:500px;
+margin-top: 6px;
+background-color: orange;
+color: #FFFFFF;
+border-radius: 10px;
+text-align: center;
+padding: 6px;
+font-size: 36pt;
+}
+
+</style>
+
+<script>
+var number=255;
+ function clickBit(bit) {
+	var bitCard =document.getElementById("bit" + bit); 	
+	if (bitCard.innerHTML==1) {
+		bitCard.innerHTML=0;
+	} else {
+		bitCard.innerHTML=1;
+	}
+
+	var st="";
+	number=0;
+	if (document.getElementById("bit128").innerHTML=="1") {
+	    st += "128 + ";
+		number+=128;
+	}
+	if (document.getElementById("bit64").innerHTML=="1") {
+	    st += "64 + ";
+		number+=64;
+	}	
+	if (document.getElementById("bit32").innerHTML=="1") {
+	    st += "32 + ";
+		number+=32;
+	}	
+	if (document.getElementById("bit16").innerHTML=="1") {
+	    st += "16 + ";
+		number+=16;
+	}
+	if (document.getElementById("bit8").innerHTML=="1") {
+	    st += "8 + ";
+		number+=8;
+	}
+	if (document.getElementById("bit4").innerHTML=="1") {
+	    st += "4 + ";
+		number+=4;		
+	}
+	if (document.getElementById("bit2").innerHTML=="1") {
+	    st += "2 + ";
+		number+=2;
+	}
+	if (document.getElementById("bit1").innerHTML=="1") {
+	    st += "1 + ";
+		number+=1;
+	}
+	if (number>0) {
+			document.getElementById("calculationArea").innerHTML = st.substring(0,st.length-2) + "<B><font color='#8C0099'> = " + number + "</font></B>";
+	} else {
+			document.getElementById("calculationArea").innerHTML = "<B><font color='#8C0099'>0</font></B>";
+	}
+	
+	
+}
+
+var randomNumber = 255;
+function getNumber() {
+	randomNumber = Math.floor((Math.random()* 256));
+	document.getElementById("number").innerHTML=randomNumber;
+}
+var score = 0;
+function checkAnswer() {
+	if (number==randomNumber) {
+		alert("Correct!");
+		score++;
+		document.getElementById("score").innerHTML=score;
+		getNumber();
+	} else {
+		alert("Incorrect Answer! Try again!");
+	}
+		
+}
+
+function showHint() {
+	if (document.getElementById("calculationArea").style.display=="none") {
+		document.getElementById("calculationArea").style.display="block";
+	} else {
+		document.getElementById("calculationArea").style.display="none";
+	}	
+}
+</script>
+</head>
+<body onload="JavaScript: getNumber();">
+<center>
+<center><big><b>Your Score: </b><span id="score">0</span><br><br>
+<big><b>Decimal Number: </b></big>
+<div id="number">255</div><br>
+<big><b>Binary Number: </b></big>
+<div style="width:520px; font-family: arial; font-size: 20px;" >
+<TABLE class=binary style = "border-spacing: 6px;  border-collapse: separate;">
+<thead>
+<TR><TD valign=middle>128</TD><TD valign=middle>64</TD><TD valign=middle>32</TD><TD valign=middle>16</TD><TD valign=middle>8</TD><TD valign=middle>4</TD><TD valign=middle>2</TD><TD valign=middle>1</TD></TR>
+</thead>
+<tbody>
+<TR><TD valign=middle onclick="Javascript: clickBit(128);" id="bit128">1</TD><TD valign=middle  onclick="Javascript: clickBit(64);" id="bit64">1</TD><TD valign=middle onclick="Javascript: clickBit(32);" id="bit32">1</TD><TD valign=middle onclick="Javascript: clickBit(16);" id="bit16">1</TD><TD valign=middle onclick="Javascript: clickBit(8);" id="bit8">1</TD><TD valign=middle onclick="Javascript: clickBit(4);" id="bit4">1</TD><TD valign=middle onclick="Javascript: clickBit(2);" id="bit2">1</TD><TD valign=middle onclick="Javascript: clickBit(1);" id="bit1">1</TD></TR>
+</tbody>
+</TD>
+</TR>
+</TABLE>
+<br><br>
+<button style="background-color:white;"><a href="#" class="btn" onclick="JavaScript:checkAnswer();return true;">Check Answer</a></button>
+<br><br><br>
+<div id="calculationArea" style=" display: none; padding:10px;border:2px solid #8C0099; text-align: center;-webkit-border-radius: 10px;-moz-border-radius: 10px;border-radius: 10px;-webkit-box-shadow: 4px 4px 3px 0px rgba(176,176,176,1);-moz-box-shadow: 4px 4px 3px 0px rgba(176,176,176,1);box-shadow: 4px 4px 3px 0px rgba(176,176,176,1);background-color: white;font-size: 18pt;padding: 20px 2px;">128 + 64 + 32 + 16 + 8 + 4 + 2 + 1 <B><font color='#8C0099'>= 255</font></B></div>
+</div>
+<button style="background-color:white;" ><a href="#" class="btn" onclick="JavaScript:showHint();return true;">Hint?</a></button>
+<br><br><br>
+</center>
+</body>
+</html>
